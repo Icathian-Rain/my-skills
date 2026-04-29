@@ -11,6 +11,7 @@
 │   └── agents/
 │       └── openai.yaml
 ├── scripts/
+│   ├── copy-skill.sh
 │   └── install-skill.sh
 └── .codex/
     └── skills/
@@ -19,6 +20,7 @@
 
 - `commit-messages/`：skill 源目录，所有实际内容都在这里维护。
 - `scripts/install-skill.sh`：把本仓库的 skill 软链接安装到指定项目。
+- `scripts/copy-skill.sh`：把本仓库的 skill 复制安装到用户目录。
 - `.codex/skills/`：Codex 的项目级 skill 安装目录。
 - `.codex/skills/commit-messages`：指向源目录的软链接，修改源目录后会自动生效。
 
@@ -75,6 +77,40 @@
 
 ```bash
 ./scripts/install-skill.sh /path/to/project --skill commit-messages --force
+```
+
+## 安装到用户目录
+
+如果希望某个 skill 对当前用户的所有项目默认可用，建议使用复制安装脚本。复制安装不会依赖本仓库路径，也不会让开发中的未提交改动立刻影响全局 skill。
+
+```bash
+./scripts/copy-skill.sh "$HOME"
+```
+
+这会把所有顶层 skill 安装到当前用户目录下的三个位置：
+
+```text
+~/.codex/skills/      # Codex
+~/.claude/skills/     # Claude Code
+~/.opencode/skills/   # OpenCode
+```
+
+只安装某个 skill 到用户目录：
+
+```bash
+./scripts/copy-skill.sh "$HOME" --skill commit-messages
+```
+
+只安装到指定工具的用户目录：
+
+```bash
+./scripts/copy-skill.sh "$HOME" --tools codex,claudecode
+```
+
+如果需要刷新用户目录中已有的副本，使用 `--force` 显式替换：
+
+```bash
+./scripts/copy-skill.sh "$HOME" --skill commit-messages --force
 ```
 
 ## 新增 Skill

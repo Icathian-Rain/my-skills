@@ -5,7 +5,7 @@
 ## 仓库约定
 
 - 顶层的每个 skill 目录都是源目录，例如 `commit-messages/`。
-- `.codex/skills/`、`.claude/skills/`、`.opencode/skills/` 是项目级安装目录，里面应放指向源目录的软链接。
+- `.codex/skills/`、`.claude/skills/`、`.opencode/skills/` 是安装目录；项目内安装优先使用指向源目录的软链接，用户目录安装优先复制 skill 目录。
 - 修改 skill 内容时，编辑源目录里的文件，不要直接替换安装目录里的软链接。
 - 新增 skill 时，使用小写短横线命名，例如 `commit-messages`。
 - 每个 skill 至少包含 `SKILL.md`；如需 UI 元数据，可包含 `agents/openai.yaml`。
@@ -34,6 +34,14 @@
 ./scripts/install-skill.sh /path/to/project --skill commit-messages --force
 ```
 
+安装到用户目录时，优先复制而不是软链接：
+
+```bash
+./scripts/copy-skill.sh "$HOME"
+./scripts/copy-skill.sh "$HOME" --skill commit-messages
+./scripts/copy-skill.sh "$HOME" --skill commit-messages --force
+```
+
 脚本应同时支持：
 
 - Codex: `.codex/skills/`
@@ -52,7 +60,9 @@ python "${CODEX_HOME:-$HOME/.codex}/skills/.system/skill-creator/scripts/quick_v
 
 ```bash
 bash -n scripts/install-skill.sh
+bash -n scripts/copy-skill.sh
 scripts/install-skill.sh --help
+scripts/copy-skill.sh --help
 ```
 
 ## 提交
