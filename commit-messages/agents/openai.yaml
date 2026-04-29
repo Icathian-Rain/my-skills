@@ -1,0 +1,4 @@
+interface:
+  display_name: "提交信息规范"
+  short_description: "规范 agent 的 git commit message"
+  default_prompt: "使用 $commit-messages 为已暂存改动生成带 gitmoji 的规范提交信息。"
