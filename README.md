@@ -13,16 +13,17 @@
 ├── scripts/
 │   ├── copy-skill.sh
 │   └── install-skill.sh
-└── .codex/
-    └── skills/
-        └── commit-messages -> ../../commit-messages
+├── .gitignore
+└── AGENTS.md
 ```
 
 - `commit-messages/`：skill 源目录，所有实际内容都在这里维护。
 - `scripts/install-skill.sh`：把本仓库的 skill 软链接安装到指定项目。
 - `scripts/copy-skill.sh`：把本仓库的 skill 复制安装到用户目录。
-- `.codex/skills/`：Codex 的项目级 skill 安装目录。
-- `.codex/skills/commit-messages`：指向源目录的软链接，修改源目录后会自动生效。
+- `AGENTS.md`：给编码 agent 的仓库维护约定。
+- `.gitignore`：忽略本地安装目录，避免提交机器相关路径。
+
+本仓库不会跟踪 `.codex/`、`.claude/`、`.opencode/` 或 `.code/`。这些目录只作为本地安装产物存在。
 
 ## 已有 Skills
 
@@ -60,6 +61,8 @@
 .claude/skills/     # Claude Code
 .opencode/skills/   # OpenCode
 ```
+
+这些项目级安装目录会被 `.gitignore` 忽略，不应提交到仓库。
 
 只安装某个 skill：
 

@@ -6,6 +6,7 @@
 
 - 顶层的每个 skill 目录都是源目录，例如 `commit-messages/`。
 - `.codex/skills/`、`.claude/skills/`、`.opencode/skills/` 是安装目录；项目内安装优先使用指向源目录的软链接，用户目录安装优先复制 skill 目录。
+- `.codex/`、`.claude/`、`.opencode/` 和 `.code/` 是本地生成目录，必须保持被 `.gitignore` 忽略，不要提交到仓库。
 - 修改 skill 内容时，编辑源目录里的文件，不要直接替换安装目录里的软链接。
 - 新增 skill 时，使用小写短横线命名，例如 `commit-messages`。
 - 每个 skill 至少包含 `SKILL.md`；如需 UI 元数据，可包含 `agents/openai.yaml`。
@@ -16,7 +17,7 @@
 - `description` 应说明 skill 做什么，以及什么时候触发。
 - 正文只写 agent 执行任务真正需要知道的流程、约束和示例。
 - 不要为单个 skill 添加无关的 `README.md`、安装指南或变更日志。
-- 如果改动影响安装方式，同步更新 `README.md` 和 `scripts/install-skill.sh`。
+- 如果改动影响安装方式，同步更新 `README.md`、`scripts/install-skill.sh` 和 `scripts/copy-skill.sh`。
 
 ## 安装
 
