@@ -10,6 +10,14 @@
 │   ├── SKILL.md
 │   └── agents/
 │       └── openai.yaml
+├── leetcode-weekly-coach/
+│   ├── SKILL.md
+│   ├── agents/
+│   │   └── openai.yaml
+│   └── references/
+│       ├── output-templates.md
+│       ├── review-rubric.md
+│       └── topic-ladders.md
 ├── scripts/
 │   ├── copy-skill.sh
 │   └── install-skill.sh
@@ -18,6 +26,7 @@
 ```
 
 - `commit-messages/`：skill 源目录，所有实际内容都在这里维护。
+- `leetcode-weekly-coach/`：按主题规划 LeetCode 周训练、继续每日题单，并生成单题题解点评。
 - `scripts/install-skill.sh`：把本仓库的 skill 软链接安装到指定项目。
 - `scripts/copy-skill.sh`：把本仓库的 skill 复制安装到用户目录。
 - `AGENTS.md`：给编码 agent 的仓库维护约定。
@@ -44,6 +53,18 @@
 🐛 fix(api): 处理空搜索条件
 ```
 
+### `leetcode-weekly-coach`
+
+规划并执行按主题分周的 LeetCode 训练，适合用于生成一周刷题计划、继续每日题单、联网校准题目信息，以及在提交题解后生成独立中文 Markdown 点评文档。
+
+主要能力：
+
+- 按“每周一个主题、每天 2-3 题、由易到难”的节奏安排训练。
+- 读取 `references/topic-ladders.md` 选择主题、题池和每日梯度。
+- 必要时联网确认题号、题名、难度、约束、标签和典型最优复杂度。
+- 为每道题生成独立点评文档，指出用户解法问题，给出推荐最优解法和 C++20 `class Solution` 代码。
+- 使用 `references/output-templates.md` 和 `references/review-rubric.md` 保持计划、点评和复盘格式稳定。
+
 ## 安装到项目
 
 推荐使用软链接安装，这样可以在本仓库集中维护 skill，并让目标项目同步使用最新内容。安装脚本同时支持 Codex、Claude Code 和 OpenCode。
@@ -68,6 +89,7 @@
 
 ```bash
 ./scripts/install-skill.sh /path/to/project --skill commit-messages
+./scripts/install-skill.sh /path/to/project --skill leetcode-weekly-coach
 ```
 
 只安装到指定工具：
@@ -102,6 +124,7 @@
 
 ```bash
 ./scripts/copy-skill.sh "$HOME" --skill commit-messages
+./scripts/copy-skill.sh "$HOME" --skill leetcode-weekly-coach
 ```
 
 只安装到指定工具的用户目录：
@@ -148,6 +171,7 @@ interface:
 
 ```bash
 python "${CODEX_HOME:-$HOME/.codex}/skills/.system/skill-creator/scripts/quick_validate.py" ./commit-messages
+python "${CODEX_HOME:-$HOME/.codex}/skills/.system/skill-creator/scripts/quick_validate.py" ./leetcode-weekly-coach
 ```
 
 校验通过时会输出：
