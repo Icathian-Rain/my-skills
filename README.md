@@ -26,7 +26,7 @@
 ```
 
 - `commit-messages/`：skill 源目录，所有实际内容都在这里维护。
-- `leetcode-weekly-coach/`：按主题规划 LeetCode 周训练、继续每日题单，并生成单题题解点评。
+- `leetcode-weekly-coach/`：生成 LeetCode 周计划、总结当天完成题目并更新周计划，以及输出单题点评。
 - `scripts/install-skill.sh`：把本仓库的 skill 软链接安装到指定项目。
 - `scripts/copy-skill.sh`：把本仓库的 skill 复制安装到用户目录。
 - `AGENTS.md`：给编码 agent 的仓库维护约定。
@@ -55,15 +55,15 @@
 
 ### `leetcode-weekly-coach`
 
-规划并执行按主题分周的 LeetCode 训练，适合用于生成一周刷题计划、继续每日题单、联网校准题目信息，以及在提交题解后生成独立中文 Markdown 点评文档。
+规划、跟进并点评按主题分周的 LeetCode 训练，适合用于生成周计划、总结当天完成题目并更新周计划，以及对特定题目生成中文点评。
 
 主要能力：
 
-- 按“每周一个主题、每天 2-3 题、由易到难”的节奏安排训练。
-- 读取 `references/topic-ladders.md` 选择主题、题池和每日梯度。
-- 必要时联网确认题号、题名、难度、约束、标签和典型最优复杂度。
-- 为每道题生成独立点评文档，指出用户解法问题，给出推荐最优解法和 C++20 `class Solution` 代码。
-- 使用 `references/output-templates.md` 和 `references/review-rubric.md` 保持计划、点评和复盘格式稳定。
+- 生成按主题组织的 LeetCode 周计划，安排每日题单、训练目标和难度梯度。
+- 总结当天完成的题目，记录完成质量、复盘重点和下一步安排，并同步更新周计划进度。
+- 对特定题目生成点评，分析用户解法、复杂度、边界风险和改进方向，并给出推荐最优解与 C++20 `class Solution` 代码。
+- 在总结当天题目时，可同步对每道已完成题目生成独立点评，并在周计划中引用对应点评文档。
+- 读取 `references/topic-ladders.md`、`references/output-templates.md` 和 `references/review-rubric.md`，保持题单选择、计划更新和点评格式稳定；必要时联网校准题目信息。
 
 ## 安装到项目
 
